@@ -3,6 +3,8 @@
 :root {
   --white: #FFFFFF;
   --background-black: #121214;
+  --mint: rgb(13, 227, 202);
+  --dark-grey: rgba(90, 90, 100, 1);
 }
 
 * {
@@ -47,14 +49,16 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px 15px;
+  max-height: 120px;
+  padding: 0px 15px;
+  height: 100px;
 }
 
 .header_icon {
   margin-left: 25px;
   height: 30px;
   width: 30px;
-  color: rgb(13, 227, 202);
+  color: var(--mint);
 }
 
 .header h1 {
@@ -65,4 +69,5 @@ footer {
 .footer p {
   font-size: 18px;
   line-height: 22px;
+  color: var(--dark-grey);
 }
