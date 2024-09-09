@@ -4,7 +4,7 @@ export default function Header() {
   return(
     <header className="header">
       <h1>
-        Cryptocurrency Chart
+        Chart
       </h1>
       <IoBarChartSharp className="header_icon" />
     </header>

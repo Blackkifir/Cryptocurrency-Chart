@@ -1,4 +1,11 @@
 .main {
-  padding: 0px 15px 0px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: calc(100vh - 200px);
+  padding: 0px 15px 0px 15px;
+}
+
+.container {
+  width: 100%;
 }
