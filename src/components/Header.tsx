@@ -1,5 +1,12 @@
+import { IoBarChartSharp } from "react-icons/io5";
+
 export default function Header() {
   return(
-    <h1 className="title">Header</h1>
+    <header className="header">
+      <h1>
+        Cryptocurrency Chart
+      </h1>
+      <IoBarChartSharp className="header_icon" />
+    </header>
   )
 } 

@@ -1,41 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 :root {
   --white: #FFFFFF;
   --background-black: #121214;
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
   
-  html,
-  body {
-    overflow-x: hidden;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    background: #121214;
-    font-family: 'Open Sans', sans-serif;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    color: #FFFFFF;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  ul,
-  li,
-  ol,
-  span,
-  p,
-  a {
-    margin: 0;
-    padding: 0;
-  }
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #121214;
+  font-family: 'Inter', sans-serif;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  color: #FFFFFF;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+ol,
+span,
+p,
+a {
+  margin: 0;
+  padding: 0;
+}
+
+header,
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 15px;
+}
+
+.header_icon {
+  margin-left: 25px;
+  height: 30px;
+  width: 30px;
+  color: rgb(13, 227, 202);
+}
+
+.header h1 {
+  font-size: 51px;
+  line-height: 44px;
+}
+
+.footer p {
+  font-size: 18px;
+  line-height: 22px;
+}

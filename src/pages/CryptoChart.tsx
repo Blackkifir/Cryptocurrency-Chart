@@ -6,7 +6,9 @@ export default function CryptoChart() {
     <>
       <Header />
       <main className="main">
-        <h1>Main</h1>
+        <div className="chart">
+          <h1>Chart</h1>
+        </div>
       </main>
       <Footer />
     </>
