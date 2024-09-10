@@ -1,13 +1,22 @@
 import { useEffect, useRef } from 'react';
-import { createChart, LineSeriesOptions } from 'lightweight-charts';
+import { createChart, CandlestickSeriesOptions } from 'lightweight-charts';
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 import './CryptoChart.css';
+import { candleStickSeriesStyles } from './mocks/mockDataChart';
 
 export default function CryptoChart() {
   const chartContainerRef = useRef<HTMLDivElement>(null);
+  
+  const generateRandomCandle = () => ({
+    time: Math.floor(Date.now() / 1000),
+    open: Math.random() * 100,
+    high: Math.random() * 100,
+    low: Math.random() * 100,
+    close: Math.random() * 100,
+  });
 
   useEffect(() => {
     if (chartContainerRef.current) {
@@ -35,23 +44,8 @@ export default function CryptoChart() {
         },
       });
 
-      const lineSeries = chart.addLineSeries({
-        color: 'rgb(13, 227, 202)',
-        lineWidth: 2,
-      } as LineSeriesOptions);
-
-      lineSeries.setData([
-        { time: '2019-04-11', value: 80.01 },
-        { time: '2019-04-12', value: 96.63 },
-        { time: '2019-04-13', value: 76.64 },
-        { time: '2019-04-14', value: 81.89 },
-        { time: '2019-04-15', value: 74.43 },
-        { time: '2019-04-16', value: 80.01 },
-        { time: '2019-04-17', value: 96.63 },
-        { time: '2019-04-18', value: 76.64 },
-        { time: '2019-04-19', value: 81.89 },
-        { time: '2019-04-20', value: 74.43 },
-      ]);
+      const candlestickSeries = chart.addCandlestickSeries(candleStickSeriesStyles as CandlestickSeriesOptions);
+      candlestickSeries.setData([]);
 
       const resizeObserver = new ResizeObserver(() => {
         if (chartContainerRef.current) {
