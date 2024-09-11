@@ -1,22 +1,15 @@
 import { useEffect, useRef } from 'react';
 import { createChart, CandlestickSeriesOptions } from 'lightweight-charts';
+import { candleStickSeriesStyles } from './mocks/mockDataChart';
+import { initialData } from './utils/generateCandle';
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 import './CryptoChart.css';
-import { candleStickSeriesStyles } from './mocks/mockDataChart';
 
 export default function CryptoChart() {
   const chartContainerRef = useRef<HTMLDivElement>(null);
-  
-  const generateRandomCandle = () => ({
-    time: Math.floor(Date.now() / 1000),
-    open: Math.random() * 100,
-    high: Math.random() * 100,
-    low: Math.random() * 100,
-    close: Math.random() * 100,
-  });
 
   useEffect(() => {
     if (chartContainerRef.current) {
@@ -45,7 +38,7 @@ export default function CryptoChart() {
       });
 
       const candlestickSeries = chart.addCandlestickSeries(candleStickSeriesStyles as CandlestickSeriesOptions);
-      candlestickSeries.setData([]);
+      candlestickSeries.setData(initialData);
 
       const resizeObserver = new ResizeObserver(() => {
         if (chartContainerRef.current) {
