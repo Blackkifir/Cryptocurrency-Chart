@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
-import { createChart, CandlestickSeriesOptions } from 'lightweight-charts';
+import React from 'react';
+import { createChart, CandlestickSeriesOptions, CandlestickData } from 'lightweight-charts';
 import { candleStickSeriesStyles } from './mocks/mockDataChart';
-import { initialData } from './utils/generateCandle';
+import { initialData, generateRandomCandle } from './utils/generateCandle';
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -9,16 +9,18 @@ import Header from "../components/Header";
 import './CryptoChart.css';
 
 export default function CryptoChart() {
-  const chartContainerRef = useRef<HTMLDivElement>(null);
+  const chartContainerRef = React.useRef<HTMLDivElement>(null);
+  const [candlestickData, setCandleStickData] = React.useState<CandlestickData<number>[]>(initialData);
+  const [isTouched, setIsTouched] = React.useState<boolean>(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (chartContainerRef.current) {
       const chart = createChart(chartContainerRef.current, {
         width: chartContainerRef.current.clientWidth,
         height: 300,
         layout: {
           background: {
-            color: '#1c1c1c',
+            color: 'rgb(10, 10, 10)',
           },
           textColor: '#FFFFFF',
         },
@@ -38,7 +40,7 @@ export default function CryptoChart() {
       });
 
       const candlestickSeries = chart.addCandlestickSeries(candleStickSeriesStyles as CandlestickSeriesOptions);
-      candlestickSeries.setData(initialData);
+      candlestickSeries.setData(candlestickData);
 
       const resizeObserver = new ResizeObserver(() => {
         if (chartContainerRef.current) {
@@ -47,12 +49,37 @@ export default function CryptoChart() {
       });
       resizeObserver.observe(chartContainerRef.current);
 
+      const candleInterval = setInterval(() => {
+        const newCandle = generateRandomCandle();
+        candlestickSeries.update(newCandle);
+      }, 10000);
+
+      const handleClick = () => {
+        setIsTouched(true);
+      };
+
+      chartContainerRef.current.addEventListener('click', handleClick);
+
       return () => {
         resizeObserver.disconnect();
         chart.remove();
+        clearInterval(candleInterval);
+        chartContainerRef.current?.removeEventListener('click', handleClick);
       };
     }
-  }, []);
+  }, [candlestickData]);
+
+  React.useEffect(() => {
+    if (isTouched) {
+      const updatedData = candlestickData.map((candle) => ({
+        ...candle,
+        color: '#26a69a',
+        borderColor: '#26a69a',
+        wickColor: '#26a69a',
+      }));
+      setCandleStickData(updatedData);
+    }
+  }, [isTouched]);
 
   return (
     <>
