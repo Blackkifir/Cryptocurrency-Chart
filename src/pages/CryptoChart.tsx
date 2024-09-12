@@ -23,7 +23,7 @@ export default function CryptoChart() {
   const generateCandle = (prevData: any): any => {
     const lastCandle = prevData || data[data.length - 1];
     const { close } = lastCandle;
-    const change = isMouseDown ? Math.random() * 50 : -Math.random() * 50;
+    const change = isMouseDown ? Math.random() * 25 : -Math.random() * 25;
     const newClose = close + change;
 
     return {
